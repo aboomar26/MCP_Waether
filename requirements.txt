@@ -1,0 +1,9 @@
+langchain-groq
+langchain-mcp-adapters
+mcp
+langgraph
+openai
+geopy
+requests
+python-dotenv
+langchain-openai
