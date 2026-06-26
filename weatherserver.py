@@ -1,5 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from geopy.geocoders import Nominatim
+from starlette.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import Middleware
 import json
 import requests
 import re
@@ -95,7 +97,17 @@ def weather(query: str) -> str:
 
 if __name__ == "__main__":
     try:
-        mcp.run(transport="streamable-http")
+        mcp.run(
+    transport="streamable-http",
+    middleware=[
+        CORSMiddleware(
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+    ]
+)
     except KeyboardInterrupt:
         print("Server stopped.")
 
